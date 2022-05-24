@@ -1,0 +1,21 @@
+name: Auto push to GitHub Page branch
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - docs/
+  workflow_dispatch:
+jobs:
+  publish:
+    name: Publish
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3.0.2
+      - name: Merge
+        uses: devmasx/merge-branch@1.4.0
+        with:
+          type: now
+          target_branch: gh-page
+          github_token: ${{ github.token }}
