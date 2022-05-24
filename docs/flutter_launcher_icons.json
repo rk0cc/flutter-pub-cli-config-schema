@@ -2,40 +2,45 @@
     "$schema": "http://json-schema.org/draft-07/schema",
     "type": "object",
     "properties": {
-        "$schema": {
-            "type": "string"
-        },
         "flutter_icons": {
+            "description": "Configuration of Flutter app's launcher icon",
             "type": "object",
             "properties": {
                 "android": {
+                    "description": "Apply app icon to Android",
                     "type": [
                         "boolean",
                         "string"
                     ]
                 },
                 "ios": {
+                    "description": "Apply app icon to iOS",
                     "type": [
                         "boolean",
                         "string"
                     ]
                 },
                 "image_path": {
+                    "description": "The location of the icon image file which you want to use as the app launcher icon",
                     "type": "string",
                     "format": "uri-reference"
                 },
                 "image_path_android": {
+                    "description": "The location of the icon image file specific for Android platform",
                     "type": "string",
                     "format": "uri-reference"
                 },
                 "image_path_ios": {
+                    "description": "TThe location of the icon image file specific for iOS platform",
                     "type": "string",
                     "format": "uri-reference"
                 },
                 "adaptive_icon_background": {
+                    "description": " The color (E.g. \"#ffffff\") or image asset (E.g. \"assets/images/christmas-background.png\") which will be used to fill out the background of the adaptive icon",
                     "type": "string"
                 },
                 "adaptive_icon_foreground": {
+                    "description": "The image asset which will be used for the icon foreground of the adaptive icon",
                     "type": "string"
                 }
             },
@@ -73,8 +78,12 @@
                     }
                 }
             ],
+            "required": [
+                "ios",
+                "android",
+                "image_path"
+            ],
             "additionalProperties": false
         }
-    },
-    "additionalProperties": false
+    }
 }
