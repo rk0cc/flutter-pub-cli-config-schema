@@ -82,11 +82,6 @@
                     }
                 }
             ],
-            "required": [
-                "ios",
-                "android",
-                "image_path"
-            ],
             "additionalProperties": false
         }
     }
