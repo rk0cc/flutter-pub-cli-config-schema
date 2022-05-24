@@ -80,6 +80,20 @@
                             }
                         }
                     }
+                },
+                {
+                    "properties": {
+                        "adaptive_icon_background": {
+                            "pattern": "^#[0-9a-fA-F]{6}$"
+                        }
+                    }
+                },
+                {
+                    "properties": {
+                        "adaptive_icon_background": {
+                            "format": "uri-reference"
+                        }
+                    }
                 }
             ]
         }
