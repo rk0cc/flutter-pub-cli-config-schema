@@ -1,0 +1,80 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "type": "object",
+    "properties": {
+        "$schema": {
+            "type": "string"
+        },
+        "flutter_icons": {
+            "type": "object",
+            "properties": {
+                "android": {
+                    "type": [
+                        "boolean",
+                        "string"
+                    ]
+                },
+                "ios": {
+                    "type": [
+                        "boolean",
+                        "string"
+                    ]
+                },
+                "image_path": {
+                    "type": "string",
+                    "format": "uri-reference"
+                },
+                "image_path_android": {
+                    "type": "string",
+                    "format": "uri-reference"
+                },
+                "image_path_ios": {
+                    "type": "string",
+                    "format": "uri-reference"
+                },
+                "adaptive_icon_background": {
+                    "type": "string"
+                },
+                "adaptive_icon_foreground": {
+                    "type": "string"
+                }
+            },
+            "anyOf": [
+                {
+                    "if": {
+                        "properties": {
+                            "android": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "then": {
+                        "properties": {
+                            "android": {
+                                "format": "uri-reference"
+                            }
+                        }
+                    }
+                },
+                {
+                    "if": {
+                        "properties": {
+                            "ios": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "then": {
+                        "properties": {
+                            "ios": {
+                                "format": "uri-reference"
+                            }
+                        }
+                    }
+                }
+            ],
+            "additionalProperties": false
+        }
+    },
+    "additionalProperties": false
+}
