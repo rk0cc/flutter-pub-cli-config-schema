@@ -1,3 +1,191 @@
 {
-    "$schema": "http://json-schema.org/draft-07/schema"
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "type": "object",
+    "definitions": {
+        "colour_hex": {
+            "type": "string",
+            "pattern": "^#[0-9a-fA-F]{6}$"
+        },
+        "disable_platform_parameter": {
+            "description": "Specify this platform disable generating splash screen.",
+            "type": "boolean",
+            "enum": [
+                false
+            ]
+        }
+    },
+    "properties": {
+        "flutter_native_splash": {
+            "description": "Configuration of Flutter app's splash screen.",
+            "type": "object",
+            "properties": {
+                "color": {
+                    "description": "Background colour of splash screen.",
+                    "$ref": "#/definitions/colour_hex"
+                },
+                "background_image": {
+                    "description": "Background image of splash screen.",
+                    "type": "string",
+                    "format": "uri-reference"
+                },
+                "image": {
+                    "description": "The image parameter allows you to specify an image used in the splash screen. It must be a png file and should be sized for 4x pixel density.",
+                    "type": "string",
+                    "format": "uri-reference"
+                },
+                "branding": {
+                    "description": "The branding property allows you to specify an image used as branding in the splash screen. It must be a png file. Currently, it is only supported for Android < v12 and iOS.",
+                    "type": "string",
+                    "format": "uri-reference"
+                },
+                "branding_mode": {
+                    "description": "To position the branding image at the bottom of the screen you can use bottom, bottomRight, and bottomLeft. The default values is bottom if not specified or specified something else.",
+                    "type": "string",
+                    "enum": [
+                        "bottom",
+                        "bottomRight",
+                        "bottomLeft"
+                    ]
+                },
+                "color_dark": {
+                    "description": "Colour uses when dark mode enabled.",
+                    "$ref": "#/definitions/colour_hex"
+                },
+                "background_image_dark": {
+                    "description": "Background image uses when dark mode enabled.",
+                    "type": "string",
+                    "format": "uri-reference"
+                },
+                "image_dark": {
+                    "description": "Image uses when dark mode enabled.",
+                    "type": "string",
+                    "format": "uri-reference"
+                },
+                "branding_dark": {
+                    "description": "Branding uses when dark mode enabled.",
+                    "type": "string",
+                    "format": "uri-reference"
+                },
+                "android_12": {
+                    "description": "Define splash screen preference uses in Android 12",
+                    "type": "object",
+                    "properties": {
+                        "image": {
+                            "description": "The image parameter sets the splash screen icon image. If this parameter is not specified, the app's launcher icon will be used instead.\nPlease note that the splash screen will be clipped to a circle on the center of the screen.\nApp icon with an icon background: This should be 960×960 pixels, and fit within a circle 640 pixels in diameter.\nApp icon without an icon background: This should be 1152×1152 pixels, and fit within a circle 768 pixels in diameter.",
+                            "type": "string",
+                            "format": "uri-reference"
+                        },
+                        "color": {
+                            "description": "Splash screen background color.",
+                            "$ref": "#/definitions/colour_hex"
+                        },
+                        "icon_background_color": {
+                            "description": "Background colour uses in app icon.",
+                            "$ref": "#/definitions/colour_hex"
+                        },
+                        "color_dark": {
+                            "description": "Colour uses when dark mode enabled.",
+                            "$ref": "#/definitions/colour_hex"
+                        },
+                        "image_dark": {
+                            "description": "Image uses when dark mode enabled.",
+                            "type": "string",
+                            "format": "uri-reference"
+                        },
+                        "icon_background_color_dark": {
+                            "description": "Icon background colour uses when dark mode enabled.",
+                            "$ref": "#/definitions/colour_hex"
+                        }
+                    }
+                },
+                "android": {
+                    "$ref": "#/definitions/disable_platform_parameter"
+                },
+                "ios": {
+                    "$ref": "#/definitions/disable_platform_parameter"
+                },
+                "web": {
+                    "$ref": "#/definitions/disable_platform_parameter"
+                },
+                "android_gravity": {
+                    "description": "Define position of splash image in Android.",
+                    "type": "string",
+                    "enum": [
+                        "bottom",
+                        "center",
+                        "center_horizontal",
+                        "center_vertical",
+                        "clip_horizontal",
+                        "clip_vertical",
+                        "end",
+                        "fill",
+                        "fill_horizontal",
+                        "fill_vertical",
+                        "left",
+                        "right",
+                        "start",
+                        "top"
+                    ],
+                    "default": "center"
+                },
+                "ios_content_mode": {
+                    "description": "Define position of splash image in iOS.",
+                    "type": "string",
+                    "enum": [
+                        "scaleToFill",
+                        "scaleAspectFit",
+                        "scaleAspectFill",
+                        "center",
+                        "top",
+                        "bottom",
+                        "left",
+                        "right",
+                        "topLeft",
+                        "topRight",
+                        "bottomLeft",
+                        "bottomRight"
+                    ],
+                    "default": "center"
+                },
+                "web_image_mode": {
+                    "description": "Define position of splash image in web.",
+                    "type": "string",
+                    "enum": [
+                        "center",
+                        "contain",
+                        "stretch",
+                        "cover"
+                    ],
+                    "default": "center"
+                },
+                "fullscreen": {
+                    "description": "Display splash screen in fullscreen.",
+                    "type": "boolean"
+                },
+                "info_plist_files": {
+                    "description": "Provides renamed .plist fines if required.",
+                    "type": "array",
+                    "items": {
+                        "type": "string",
+                        "pattern": "\\.plist$",
+                        "format": "uri-reference"
+                    },
+                    "minItems": 1,
+                    "uniqueItems": true
+                }
+            },
+            "oneOf": [
+                {
+                    "required": [
+                        "color"
+                    ]
+                },
+                {
+                    "required": [
+                        "background_image"
+                    ]
+                }
+            ]
+        }
+    }
 }
