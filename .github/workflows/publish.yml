@@ -5,6 +5,8 @@ on:
       - Generate schema dictionary
     types:
       - completed
+    branch:
+      - main
 jobs:
   publish:
     name: Publish
