@@ -171,7 +171,8 @@
                         "format": "uri-reference"
                     },
                     "minItems": 1,
-                    "uniqueItems": true
+                    "uniqueItems": true,
+                    "additionalItems": false
                 }
             },
             "anyOf": [
