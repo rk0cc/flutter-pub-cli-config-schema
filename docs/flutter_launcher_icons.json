@@ -45,7 +45,8 @@
                 },
                 "adaptive_icon_foreground": {
                     "description": "The image asset which will be used for the icon foreground of the adaptive icon",
-                    "type": "string"
+                    "type": "string",
+                    "format": "uri-reference"
                 }
             },
             "anyOf": [
@@ -80,7 +81,9 @@
                             }
                         }
                     }
-                },
+                }
+            ],
+            "oneOf": [
                 {
                     "properties": {
                         "adaptive_icon_background": {
