@@ -1,36 +1,16 @@
 name: Auto push to GitHub Page branch
 on:
-  push:
-    branches:
+  workflow_run:
+    workflows:
+      - Generate schema dictionary
+    types:
+      - completed
+    branch:
       - main
-    paths:
-      - docs/**
-  workflow_dispatch:
 jobs:
-  gen_dict:
-    name: Generate schemas dictionary
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3.0.2
-      - name: Export
-        shell: pwsh
-        run: ./schema_file_g.ps1
-      - name: Commit dictionary data
-        run: |
-          git config --local user.name "GitHub Action"
-          git config --local user.email "enquiry@rk0cc.xyz"
-          git add .
-          git commit -m "Genrate dictionary file"
-      - name: Push commited
-        uses: ad-m/github-push-action@master
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          branch: main
   publish:
     name: Publish
     runs-on: ubuntu-latest
-    needs: gen_dict
     steps:
       - name: Checkout
         uses: actions/checkout@v3.0.2
