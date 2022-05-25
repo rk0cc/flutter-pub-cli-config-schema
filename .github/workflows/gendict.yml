@@ -16,12 +16,14 @@ jobs:
         shell: pwsh
         run: ./schema_file_g.ps1
       - name: Commit dictionary data
+        continue-on-error: true
         run: |
           git config --local user.name "GitHub Action"
           git config --local user.email "enquiry@rk0cc.xyz"
           git add .
           git commit -m "Genrate dictionary file"
       - name: Push commited
+        continue-on-error: true
         uses: ad-m/github-push-action@master
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
