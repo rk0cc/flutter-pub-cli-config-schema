@@ -5,6 +5,7 @@ on:
       - main
     paths:
       - docs/**
+      - '!docs/dict.json'
   workflow_dispatch:
 jobs:
   gen_dict:
