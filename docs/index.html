@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8"/>
+        <title>Flutter pub CLI configuration file schema</title>
+        <meta name="description" content="Provides JSON schema support for the most popular pub.dev's Flutter CLI package tools.">
+    </head>
+    <body>
+        <h1>Flutter pub CLI tools configuration file JSON schema</h1>
+        <ul id="schema-list"></ul>
+        <script>
+            (function () {
+                const list = document.querySelector("ul#schema-list");
+                const dictLink = "https://osp.rk0cc.xyz/flutter-pub-cli-config-schema/dict.json";
+
+                function loadSchemaLink(schemaLink) {
+                    var sl = document.createElement("a");
+                    sl.href = "./" + schemaLink;
+                    sl.innerText = schemaLink;
+
+                    var li = document.createElement("li");
+                    li.appendChild(sl);
+                    
+                    list.appendChild(li);
+                }
+
+                if (fetch) {
+                    fetch(dictLink, { method: "GET" })
+                        .then(resp => resp.json())
+                        .then(json => json.forEach(loadSchemaLink));
+                } else if (XMLHttpRequest) {
+                    var xhr = new XMLHttpRequest();
+                    xhr.onreadystatechange = function () {
+                        if (this.readyState == XMLHttpRequest.DONE && this.status == 200) {
+                            var json = JSON.parse(xhr.responseText);
+
+                            json.forEach(function (sl) {
+                                loadSchemaLink(sl);
+                            });
+                        }
+                    };
+                    xhr.open("GET", dictLink, true);
+                    xhr.send();
+                } else {
+                    var tooOld = document.createElement("p");
+                    tooOld.innerText = "This browser does not suppored for this site.";
+
+                    list.appendChild(tooOld);
+                }
+            })();
+        </script>
+    </body>
+</html>
