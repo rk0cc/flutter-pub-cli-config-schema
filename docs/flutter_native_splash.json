@@ -1,6 +1,5 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema",
-    "$comment": "",
     "type": "object",
     "definitions": {
         "colour_hex": {
@@ -174,6 +173,28 @@
                     "minItems": 1,
                     "uniqueItems": true,
                     "additionalItems": false
+                },
+                "android_screen_orientation": {
+                    "description": "The orientation of the splash screen display on the Android device. This does not affected when multi-windows mode enabled.",
+                    "type": "string",
+                    "enum": [
+                        "unspecified",
+                        "behind",
+                        "landscape",
+                        "portrait",
+                        "reverseLandscape",
+                        "reversePortrait",
+                        "sensorLandscape",
+                        "sensorPortrait",
+                        "userLandscape",
+                        "userPortrait",
+                        "sensor",
+                        "fullSensor",
+                        "nosensor",
+                        "user",
+                        "fullUser",
+                        "locked"
+                    ]
                 }
             },
             "anyOf": [
